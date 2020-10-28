@@ -267,4 +267,18 @@ public class CalculatorTest {
         Assert.assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void evaluate20() {
+        //given
+        String input = "12+";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+
 }
