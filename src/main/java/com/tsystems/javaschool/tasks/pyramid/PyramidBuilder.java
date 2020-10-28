@@ -1,5 +1,8 @@
 package com.tsystems.javaschool.tasks.pyramid;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class PyramidBuilder {
@@ -14,8 +17,36 @@ public class PyramidBuilder {
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) {
         // TODO : Implement your solution here
-        return new int[0][0];
+        try {
+            Collections.sort(inputNumbers);
+        } catch (NullPointerException | OutOfMemoryError e) {
+            throw new CannotBuildPyramidException();
+        }
+        int rowsCount = 0;
+        int iterator = 0;
+        while (iterator < inputNumbers.size()) {
+            rowsCount++;
+            for (int i = 0; i < rowsCount; i++) {
+                iterator++;
+            }
+        }
+        int[][] pyramid = new int[rowsCount][rowsCount * 2 - 1];
+        iterator = 0;
+        try {
+            for (int i = 0; i <= rowsCount && iterator < inputNumbers.size(); i++) {
+                int k = (rowsCount - i - 1);
+                for (int j = 0; j <= i; j++) {
+                    pyramid[i][k] = inputNumbers.get(iterator++);
+                    k += 2;
+                }
+            }
+        }catch (IndexOutOfBoundsException e){
+            throw new CannotBuildPyramidException();
+        }
+
+        return pyramid;
     }
-
-
 }
+
+
+
