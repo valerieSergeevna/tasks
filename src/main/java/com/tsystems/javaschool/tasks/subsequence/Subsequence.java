@@ -42,25 +42,5 @@ public class Subsequence {
             }
         }
         return true;
-      /*  Iterator<Object> iterator = y.iterator();
-        boolean check = false;
-        List compareList = new ArrayList(x);
-        while (iterator.hasNext()) {
-            Object item = iterator.next();
-            Iterator<Object> iterator2 = compareList.iterator();
-            while (iterator2.hasNext()) {
-                Object elem = iterator2.next();
-                if (elem.equals(item)) {
-                    check = true;
-                    iterator2.remove();
-                    break;
-                }
-            }
-            if (!check) {
-                iterator.remove();
-            }
-            check = false;
-        }
-        return x.equals(y);*/
     }
 }
