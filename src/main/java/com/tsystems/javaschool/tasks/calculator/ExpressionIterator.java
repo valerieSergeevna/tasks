@@ -13,13 +13,13 @@ public class ExpressionIterator {
     }
 
     public boolean hasNext() {
-        return  index < inputStr.length() &&inputStr.length() != 0 && inputStr != null;
+        return index < inputStr.length() && inputStr.length() != 0 && inputStr != null;
     }
 
     public String next() {
         StringBuilder value = new StringBuilder();
         char token = inputStr.charAt(index);
-        if (Character.toString(token).matches("\"\\\\(|\\\\)|\\\\+|-|\\\\*|/\"") && index == 0 )
+        if (Character.toString(token).matches("\"\\\\(|\\\\)|\\\\+|-|\\\\*|/\"") && index == 0)
             throw new IllegalArgumentException();
         while (Character.isDigit(token) || token == '.') {
             value.append(token);
@@ -30,7 +30,7 @@ public class ExpressionIterator {
             if (token == '.') {
                 dotCount++;
             }
-            if (token == ',' || dotCount >= 2 ||  (index > 0 && inputStr.charAt(index - 1) == '('
+            if (token == ',' || dotCount >= 2 || (index > 0 && inputStr.charAt(index - 1) == '('
                     && Character.toString(token).matches("\"\\\\(|\\\\)|\\\\+|-|\\\\*|/\""))) {
                 throw new IllegalArgumentException();
             }

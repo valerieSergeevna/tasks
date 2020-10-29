@@ -213,5 +213,21 @@ public class SubsequenceTest {
         Assert.assertFalse(result);
     }
 
+    @Test
+    public void find000() {
+        List x = Stream.of(1, 3, 3, 5, 7, 9).collect(toList());
+        List y = Stream.of(1, 3, 10, 2, 1, 4, 5, 7, 9, 20).collect(toList());
+
+        boolean result = subsequence.find(x, y);
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void find001() {
+        List x = Stream.of(1, 3, 3, 5, 7, 9).collect(toList());
+        List y = Stream.of(1, 3, 10, 2, 1, 3, 4, 5, 7, 9, 20).collect(toList());
+        boolean result = subsequence.find(x, y);
+        Assert.assertTrue(result);
+    }
 
 }

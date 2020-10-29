@@ -1,8 +1,6 @@
 package com.tsystems.javaschool.tasks.subsequence;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,12 +18,31 @@ public class Subsequence {
     public boolean find(List x, List y) {
         // TODO: Implement the logic here
         if (x == null || y == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("x or y must not be null");
         }
         if (x.size() > y.size()) {
             return false;
         }
+        if (x.size() == 0 || (x.size() == 0 && y.size() == 0)){
+            return true;
+        }
         Iterator<Object> iterator = y.iterator();
+        Iterator<Object> iterator2 = x.iterator();
+        Object item = iterator.next();
+        Object item2 = iterator2.next();
+        while (iterator2.hasNext()) {
+            if (!iterator.hasNext()&&iterator2.hasNext()){
+                return false;
+            }
+            if (item.equals(item2)) {
+                item = iterator.next();
+                item2 = iterator2.next();
+            }else{
+                item = iterator.next();
+            }
+        }
+        return true;
+      /*  Iterator<Object> iterator = y.iterator();
         boolean check = false;
         List compareList = new ArrayList(x);
         while (iterator.hasNext()) {
@@ -33,17 +50,17 @@ public class Subsequence {
             Iterator<Object> iterator2 = compareList.iterator();
             while (iterator2.hasNext()) {
                 Object elem = iterator2.next();
-                    if (elem.equals(item)) {
-                        check = true;
-                        iterator2.remove();
-                        break;
-                    }
+                if (elem.equals(item)) {
+                    check = true;
+                    iterator2.remove();
+                    break;
+                }
             }
             if (!check) {
                 iterator.remove();
             }
             check = false;
         }
-        return x.equals(y);
+        return x.equals(y);*/
     }
 }

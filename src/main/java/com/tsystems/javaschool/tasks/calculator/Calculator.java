@@ -1,12 +1,9 @@
 package com.tsystems.javaschool.tasks.calculator;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
-
-import static javax.swing.UIManager.put;
 
 public class Calculator {
     private static HashMap<Character, Integer> priorities = new HashMap() {{
@@ -73,7 +70,7 @@ public class Calculator {
                     sign.push(token.charAt(0));
                 } else {
                     int priority = priorities.get(token.charAt(0));
-                    while ( priority <= priorities.get(sign.peek()) && !sign.empty() && !sign.peek().equals('(') && !sign.peek().equals(')')) {
+                    while (priority <= priorities.get(sign.peek()) && !sign.empty() && !sign.peek().equals('(') && !sign.peek().equals(')')) {
                         solve();
                     }
                     sign.push(token.charAt(0));
@@ -89,29 +86,29 @@ public class Calculator {
     }
 
     private void solve() {
-        try{
-        Double value1 = values.pop();
-        Double value2 = values.pop();
-        Character action = sign.pop();
-        switch (action) {
-            case '+':
-                value1 += value2;
-                break;
-            case '-':
-                value1 = value2 - value1;
-                break;
-            case '*':
-                value1 *= value2;
-                break;
-            case '/': {
-                if (value1 == 0)
-                    throw new ArithmeticException();
-                value1 = value2 / value1;
-                break;
+        try {
+            Double value1 = values.pop();
+            Double value2 = values.pop();
+            Character action = sign.pop();
+            switch (action) {
+                case '+':
+                    value1 += value2;
+                    break;
+                case '-':
+                    value1 = value2 - value1;
+                    break;
+                case '*':
+                    value1 *= value2;
+                    break;
+                case '/': {
+                    if (value1 == 0)
+                        throw new ArithmeticException();
+                    value1 = value2 / value1;
+                    break;
+                }
             }
-        }
-        values.push(value1);
-        }catch (EmptyStackException e){
+            values.push(value1);
+        } catch (EmptyStackException e) {
             throw new IllegalArgumentException();
         }
     }
