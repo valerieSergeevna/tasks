@@ -18,20 +18,20 @@ public class Subsequence {
     public boolean find(List x, List y) {
         // TODO: Implement the logic here
         if (x == null || y == null) {
-            throw new IllegalArgumentException("x or y must not be null");
+            throw new IllegalArgumentException("x and y must not be null");
         }
         if (x.size() > y.size()) {
             return false;
         }
-        if (x.size() == 0 || (x.size() == 0 && y.size() == 0)){
+        if (x.size() == 0){
             return true;
         }
-        Iterator<Object> iterator = y.iterator();
-        Iterator<Object> iterator2 = x.iterator();
+        Iterator iterator = y.iterator();
+        Iterator iterator2 = x.iterator();
         Object item = iterator.next();
         Object item2 = iterator2.next();
         while (iterator2.hasNext()) {
-            if (!iterator.hasNext()&&iterator2.hasNext()){
+            if (!iterator.hasNext()){
                 return false;
             }
             if (item.equals(item2)) {
