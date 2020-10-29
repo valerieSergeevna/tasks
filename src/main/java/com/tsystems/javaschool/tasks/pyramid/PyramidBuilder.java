@@ -17,33 +17,37 @@ public class PyramidBuilder {
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) {
         // TODO : Implement your solution here
-        try {
-            Collections.sort(inputNumbers);
-        } catch (NullPointerException | OutOfMemoryError e) {
+        if (inputNumbers == null || inputNumbers.size() == 0){
             throw new CannotBuildPyramidException();
         }
         int rowsCount = 0;
         int iterator = 0;
+
         while (iterator < inputNumbers.size()) {
             rowsCount++;
             for (int i = 0; i < rowsCount; i++) {
                 iterator++;
             }
         }
-        int[][] pyramid = new int[rowsCount][rowsCount * 2 - 1];
-        iterator = 0;
-        try {
-            for (int i = 0; i <= rowsCount && iterator < inputNumbers.size(); i++) {
-                int k = (rowsCount - i - 1);
-                for (int j = 0; j <= i; j++) {
-                    pyramid[i][k] = inputNumbers.get(iterator++);
-                    k += 2;
-                }
-            }
-        }catch (IndexOutOfBoundsException e){
+        if (rowsCount * (rowsCount + 1) / 2 != inputNumbers.size()) {
             throw new CannotBuildPyramidException();
         }
+        for (Integer item : inputNumbers) {
+            if (item == null) {
+                throw new CannotBuildPyramidException();
+            }
+        }
+        Collections.sort(inputNumbers);
 
+        int[][] pyramid = new int[rowsCount][rowsCount * 2 - 1];
+        iterator = 0;
+        for (int i = 0; i <= rowsCount && iterator < inputNumbers.size(); i++) {
+            int k = (rowsCount - i - 1);
+            for (int j = 0; j <= i; j++) {
+                pyramid[i][k] = inputNumbers.get(iterator++);
+                k += 2;
+            }
+        }
         return pyramid;
     }
 }
